@@ -16,9 +16,9 @@ if (document.querySelector('body').classList.contains('-debug')) {
 }
 
 // =modules
-// if (document.querySelector('.module-name')) {
-//   import(/* webpackChunkName: "moduleName" */ 'module/moduleName')
-// }
+if (document.querySelector('.js-create-form')) {
+   import(/* webpackChunkName: "moduleName" */ 'page/create-form')
+}
 
 // =blocks
 // if (document.querySelector('.m-blockname')) {

@@ -43,6 +43,8 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "enquire.js": "^2.1.6"
+    "enquire.js": "^2.1.6",
+    "firebase": "^5.5.7",
+    "flatpickr": "^4.5.2"
   }
 }
