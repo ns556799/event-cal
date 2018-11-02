@@ -1,0 +1,18 @@
+.nav-mains {
+	@include mq($sl) {
+		float: right;
+	}
+}
+	.nav-main {
+
+	}
+		.nav-main__item {
+			display: inline-block;
+			margin: 0 10px 0 0;
+		}
+			.nav-main__link {
+				color: $grey-light;
+				&:hover {
+					color: darken($grey-light, 30%);
+				}
+			}

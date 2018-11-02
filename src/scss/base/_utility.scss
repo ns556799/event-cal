@@ -1,0 +1,28 @@
+// actions
+.left { float: left; }
+.right { float: right; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+// debugging mode
+@include mqd(".debugger", "bottom");
+
+// blocks debugger
+.debugger-block {
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: $black;
+  padding: $gutter-xs $gutter;
+  color: $white;
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: .4;
+}
+
+// better navigation
+#BetterNavigator {
+  top: 50% !important;
+}

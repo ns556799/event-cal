@@ -1,0 +1,81 @@
+html {
+	overflow-y: scroll;
+}
+body {
+	min-width: $device-width-min;
+	background: $base-background-color;
+	color: $base-font-color;
+	font-family: $base-font-family;
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0 0 $small-spacing;
+	font-family: $heading-font-family;
+	font-size: modular-scale(1);
+	line-height: $heading-line-height;
+}
+h1 {
+	font-size: $h1-font-size;
+}
+h2 {
+	font-size: $h2-font-size;
+}
+h3 {
+	font-size: $h3-font-size;
+}
+h4 {
+	font-size: $h4-font-size;
+}
+h5 {
+	font-size: $h5-font-size;
+}
+h6 {
+	font-size: $h6-font-size;
+}
+p {
+	margin: 0 0 $small-spacing;
+}
+a {
+	color: $action-color;
+	text-decoration: none;
+	transition: color $base-duration $base-timing;
+
+	&:active,
+	&:focus,
+	&:hover {
+		color: shade($action-color, 25%);
+	}
+}
+hr {
+	margin: $base-spacing 0;
+	border-bottom: $base-border;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+}
+
+.typ {
+	> *:first-child {
+		margin-top: 0;
+	}
+	> *:last-child {
+		margin-bottom: 0;
+	}
+	ul {
+		margin-bottom: $base-spacing / 2;
+		padding-left: $base-spacing;
+		list-style-type: disc;
+	}
+	ol {
+		margin-bottom: $base-spacing / 2;
+		padding-left: $base-spacing;
+		list-style-type: decimal;
+	}
+}

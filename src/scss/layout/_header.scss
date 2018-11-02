@@ -1,0 +1,15 @@
+.header {
+	padding: 30px 0;
+	background: $grey-dark;
+}
+	.header__logo {
+		color: $white;
+		font-size: 22px;
+		font-weight: bold;
+		@include mq($sl) {
+			float: left;
+		}
+		&:hover {
+			color: $grey-light;
+		}
+	}

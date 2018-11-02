@@ -1,0 +1,27 @@
+body.-ss-login {
+	fieldset {
+		margin: 0;
+		padding: 0;
+		border: none;
+		background: none;
+	}
+	.field {
+		&.text,
+		&.password {
+			input {
+				max-width: 320px;
+			}
+			label {
+				float: none;
+			}
+		}
+		&.checkbox {
+			label {
+				display: inline-block;
+				&.right {
+					float: none;
+				}
+			}
+		}
+	}
+}

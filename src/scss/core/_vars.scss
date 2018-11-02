@@ -1,0 +1,173 @@
+// ====================================================================
+// =debug mode
+// ====================================================================
+
+$debug-mode: true;
+
+
+
+// ====================================================================
+// =themes
+// ====================================================================
+
+$white: #ffffff;
+$black: #000000;
+$blue: #477dca;
+$grey-dark: #333;
+$grey-medium: #999;
+$grey-light: #ddd;
+
+
+
+// ====================================================================
+// =paths, fonts
+// ====================================================================
+
+// image folder path
+$image-url-path: "../img/";
+
+// custom font path
+$font-path: "../fonts";
+$font-custom-name: "icomoon"; // icons from: http://icomoon.io/
+
+// font vars
+$icon-phone: \f095;
+$icon-at: \f1fa;
+
+// typography
+$base-font-family: $font-stack-system;
+$heading-font-family: $base-font-family;
+
+// font colors
+$base-font-color: $grey-dark;
+$action-color: $blue;
+
+// font sizes
+$base-font-size: 1em;
+
+$h1-font-size: $base-font-size * 2.25;
+$h2-font-size: $base-font-size * 2;
+$h3-font-size: $base-font-size * 1.75;
+$h4-font-size: $base-font-size * 1.5;
+$h5-font-size: $base-font-size * 1.25;
+$h6-font-size: $base-font-size;
+
+// line height
+$base-line-height: 1.5;
+$heading-line-height: 1.2;
+
+// other sizes
+$base-border-radius: 3px;
+$base-spacing: $base-line-height * 1em;
+$small-spacing: $base-spacing / 2;
+$base-z-index: 0;
+
+
+
+// ====================================================================
+// =border, bg, forms, animations
+// ====================================================================
+
+// border
+$base-border-color: $grey-light;
+$base-border: 1px solid $base-border-color;
+
+// background colors
+$base-background-color: $white;
+$secondary-background-color: tint($base-border-color, 75%);
+
+// forms
+$form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
+
+// animations
+$base-duration: 150ms;
+$base-timing: ease;
+
+
+
+// ====================================================================
+// =responsive
+// ====================================================================
+
+// device
+$device-width-max: 1200px;
+$device-width-min: 320px;
+
+// media queries and breakpoints
+$xxxs: 0;
+$xxs: 200px;
+$xs: 320px;
+$s: 400px;
+$sl: 480px;
+$sl2: 580px;
+$m: 768px;
+$ml: 992px;
+$l: 1100px;
+$xl: 1200px;
+$xxl: 1300px;
+$xxxl: 1400px;
+$xxxxl: 1500px;
+$xxxxxl: 1600px;
+$xxxxxxl: 1700px;
+
+$breakpoints: (
+		(xxxs, $xxxs),
+		(xxs, $xxs),
+		(xs, $xs),
+		(s, $s),
+		(sl, $sl),
+		(sl2, $sl2),
+		(m, $m),
+		(ml, $ml),
+		(l, $l),
+		(xl, $xl),
+		(xxl, $xxl),
+		(xxxl, $xxxl),
+		(xxxxl, $xxxxl),
+		(xxxxxl, $xxxxxl),
+		(xxxxxxl, $xxxxxxl)
+);
+$bpLength: length($breakpoints);
+
+// disable bourbon autoprefixer
+$prefix-for-webkit: false;
+$prefix-for-mozilla: false;
+$prefix-for-microsoft: false;
+$prefix-for-opera: false;
+$prefix-for-spec: true;
+
+
+
+// ====================================================================
+// =project specific vars
+// ====================================================================
+
+// z-index
+$z-layers: (
+		'modal' 200,
+		'dropdown' 20,
+		'default' 1,
+		'bottomless' -10000
+);
+
+$gutter: 20px;
+$gutter-xxxs: $gutter / 4;
+$gutter-xxs: $gutter / 3;
+$gutter-xs: $gutter / 2;
+$gutter-s: $gutter / 1.5;
+$gutter-m: $gutter * 1.5;
+$gutter-l: $gutter * 2;
+$gutter-xl: $gutter * 3;
+$gutter-xxl: $gutter * 4;
+$gutter-xxxl: $gutter * 5;
+
+// grid margin and padding
+$pad-grid: $gutter;
+$marg-grid: $gutter;
+
+// margin
+$marg: $gutter;
+
+// padding
+$pad: $gutter;
