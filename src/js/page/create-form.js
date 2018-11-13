@@ -87,13 +87,24 @@ createForm.addEventListener('submit', (e) => {
   let date = createForm.querySelector('#date').value
   date = date.split('-').join(',')
   date = new Date(date)
+  let brands = []
+
+  const eventBrands = Array.from(document.querySelectorAll('.create-form__brands input[type=checkbox]'))
+  eventBrands.forEach((brand) => {
+    if (brand.checked) {
+      brands.push(brand.value)
+    }
+  })
 
   const obj = {
     title,
     location,
     date,
-    imageURL
+    imageURL,
+    brands
   }
   console.log(obj)
-  /*ref.push(obj)*/
+/*
+  ref.push(obj)
+*/
 })

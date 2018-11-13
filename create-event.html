@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<!--[if lte IE 6]><html class="preIE7 preIE8 preIE9"><![endif]-->
-<!--[if IE 7]><html class="preIE8 preIE9"><![endif]-->
-<!--[if IE 8]><html class="preIE9"><![endif]-->
-<!--[if gte IE 9]><!--><html><!--<![endif]-->
+<!--[if lte IE 6]>
+<html class="preIE7 preIE8 preIE9"><![endif]-->
+<!--[if IE 7]>
+<html class="preIE8 preIE9"><![endif]-->
+<!--[if IE 8]>
+<html class="preIE9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html><!--<![endif]-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -21,7 +25,7 @@
     <div class="create-event-form js-create-form">
         <form action="#" method="post">
             <div>
-                <label for="title">Name:</label>
+                <label for="title">Event Title:</label>
                 <input type="text" id="title" name="title">
             </div>
             <div>
@@ -32,9 +36,32 @@
                 <label for="date">Date:</label>
                 <input type="text" id="date" name="date">
             </div>
-            <div class="radio">
-                <label><input type="radio" value="1" name="my-radio">Radio One</label>
-                <label><input type="radio" value="2" name="my-radio">Radio One</label>
+            <div class="create-form__brands">
+                <div class="create-form__brands-item">
+                    <input type="checkbox" id="pensions_expert" name="brands" value="pensions_expert">
+                    <label for="pensions_expert">Pensions Expert</label>
+                </div>
+                <div class="create-form__brands-item">
+                    <input type="checkbox" id="pwm" name="brands" value="pwm">
+                    <label for="pwm">PWM</label>
+                </div>
+                <div class="create-form__brands-item">
+                    <input type="checkbox" id="the_banker" name="brands" value="the_banker">
+                    <label for="the_banker">The Banker</label>
+                </div>
+                <div class="create-form__brands-item">
+                    <input type="checkbox" id="ftadviser" name="brands" value="ftadviser">
+                    <label for="ftadviser">FTAdviser</label>
+                </div>
+                <div class="create-form__brands-item">
+                    <input type="checkbox" id="financial_adviser" name="brands" value="financial_adviser">
+                    <label for="financial_adviser">Money Management</label>
+                </div>
+                <div class="create-form__brands-item">
+                    <input type="checkbox" id="money_management" name="brands" value="money_management">
+                    <label for="money_management"> Financial Adviser</label>
+                </div>
+
             </div>
             <div class="end-date -hide">
                 <label for="endDate">End Date:</label>
@@ -42,7 +69,7 @@
             </div>
             <div id="filesubmit">
                 <input type="file" id="fileButton" class="file-select" accept="image/*"/>
-                <button type="button" class="file-submit">SUBMIT</button>
+                <button type="button" class="file-submit">Upload</button>
             </div>
             <button type="submit">Submit</button>
         </form>

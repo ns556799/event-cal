@@ -4,3 +4,18 @@
     display: none;
   }
 }
+
+.create-form__brands {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-form__brands-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  label {
+    margin: 0;
+  }
+}
