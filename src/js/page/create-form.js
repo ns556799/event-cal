@@ -13,8 +13,17 @@ const config = {
 
 firebase.initializeApp(config)
 const ref = firebase.database().ref('/events')
+
+ref.on('value', function(snapshot) {
+  console.log(snapshot.val())
+}, function (errorObject) {
+  console.log('The read failed: ' + errorObject.code)
+})
+
 const date = createForm.querySelector('#date')
 flatpickr(date, {dateFormat: 'Y-m-d'})
+const enddate = createForm.querySelector('#endDate')
+flatpickr(enddate, {dateFormat: 'Y-m-d'})
 
 const radioButtons = Array.from(document.querySelectorAll('.radio input'))
 const endDate = document.querySelector('.end-date')
@@ -72,7 +81,6 @@ fileButton.addEventListener('change', function(e) {
           break
       }
     }, function() {
-      // Upload completed successfully, now we can get the download URL
       uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
         console.log('File available at', downloadURL)
         imageURL = downloadURL
@@ -85,8 +93,27 @@ createForm.addEventListener('submit', (e) => {
   const title = createForm.querySelector('#title').value
   const location = createForm.querySelector('#location').value
   let date = createForm.querySelector('#date').value
+  let enddate = createForm.querySelector('#endDate').value
+  let email = createForm.querySelector('#email').value
+  let url = createForm.querySelector('#url').value
+
   date = date.split('-').join(',')
-  date = new Date(date)
+  /* date = new Date(date)*/
+  if (enddate) {
+    enddate = enddate.split('-').join(',')
+    enddate = new Date(enddate)
+  } else {
+    enddate = null
+  }
+
+  if (!url) {
+    url = null
+  }
+
+  if (!email) {
+    email = null
+  }
+
   let brands = []
 
   const eventBrands = Array.from(document.querySelectorAll('.create-form__brands input[type=checkbox]'))
@@ -100,11 +127,12 @@ createForm.addEventListener('submit', (e) => {
     title,
     location,
     date,
+    enddate,
     imageURL,
-    brands
+    brands,
+    email,
+    url
   }
   console.log(obj)
-/*
   ref.push(obj)
-*/
 })

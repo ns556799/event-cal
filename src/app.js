@@ -20,6 +20,10 @@ if (document.querySelector('.js-create-form')) {
    import(/* webpackChunkName: "moduleName" */ 'page/create-form')
 }
 
+if (document.querySelector('.js-events')) {
+   import(/* webpackChunkName: "moduleName" */ 'page/event-container')
+}
+
 // =blocks
 // if (document.querySelector('.m-blockname')) {
 //   import(/* webpackChunkName: "blockName" */ 'block/blockName')

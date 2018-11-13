@@ -26,17 +26,29 @@
         <form action="#" method="post">
             <div>
                 <label for="title">Event Title:</label>
-                <input type="text" id="title" name="title">
+                <input type="text" id="title" name="title" required>
             </div>
             <div>
                 <label for="location">Location:</label>
-                <input type="text" id="location" name="location">
+                <input type="text" id="location" name="location" required>
             </div>
             <div>
                 <label for="date">Date:</label>
-                <input type="text" id="date" name="date">
+                <input type="text" id="date" name="date" required>
+            </div>
+            <div>
+                <label for="endDate"> End Date:</label>
+                <input type="text" id="endDate" name="date">
             </div>
             <div class="create-form__brands">
+                <div class="create-form__brands-item">
+                    <input type="checkbox" id="financial_times" name="brands" value="financial_times">
+                    <label for="financial_times">Financial Times</label>
+                </div>
+                <div class="create-form__brands-item">
+                    <input type="checkbox" id="FTfm" name="brands" value="FTfm">
+                    <label for="FTfm">FTfm</label>
+                </div>
                 <div class="create-form__brands-item">
                     <input type="checkbox" id="pensions_expert" name="brands" value="pensions_expert">
                     <label for="pensions_expert">Pensions Expert</label>
@@ -61,15 +73,27 @@
                     <input type="checkbox" id="money_management" name="brands" value="money_management">
                     <label for="money_management"> Financial Adviser</label>
                 </div>
+                <div class="create-form__brands-item">
+                    <input type="checkbox" id="fdi" name="brands" value="fdi">
+                    <label for="fdi"> Fdi </label>
+                </div>
+                <div class="create-form__brands-item">
+                    <input type="checkbox" id="ic" name="brands" value="ic">
+                    <label for="ic"> IC </label>
+                </div>
 
             </div>
-            <div class="end-date -hide">
-                <label for="endDate">End Date:</label>
-                <input type="text" id="endDate" name="endDate">
-            </div>
-            <div id="filesubmit">
+            <div id="filesubmit" class="create-form__img">
                 <input type="file" id="fileButton" class="file-select" accept="image/*"/>
                 <button type="button" class="file-submit">Upload</button>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email">
+            </div>
+            <div>
+                <label for="url">URL:</label>
+                <input type="text" id="url" name="url">
             </div>
             <button type="submit">Submit</button>
         </form>
