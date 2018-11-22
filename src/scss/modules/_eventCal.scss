@@ -1,3 +1,136 @@
+.page-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.events-container {
+  max-height: 900px;
+  overflow-y: auto;
+}
+
+.calender-holder {
+  display: flex;
+  flex-direction: column;
+
+  @include mq($m) {
+    flex-direction: row;
+  }
+}
+
+.calender-holder__content{
+  max-width: 100%;
+  flex-basis: 100%;
+
+  @include mq($m) {
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+}
+
+.calender-holder__cal{
+  max-width: 100%;
+  flex-basis: 100%;
+
+  @include mq($m) {
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+}
+
+
+.event-item {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #f7e9d9;
+  margin-bottom: 60px;
+  height: 190px;
+  &.-hide {
+    display: none;
+  }
+}
+
+.event-item__img {
+  max-width: 320px;
+  height: 190px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100%;
+  flex-basis: 320px;
+}
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+  background: red;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  flex: 1;
+  max-width: calc(100% - 320px);
+  flex-basis: calc(100% - 320px);
+  position: relative;
+}
+
+.event-item__title {
+}
+
+.event-item__date {
+}
+
+.event-item__location {
+}
+
+.event-item__cta {
+}
+
+.event-item__brands {
+  position: absolute;
+  width: 100%;
+  background: blue;
+  opacity: 0;
+  transition: opacity 0.5s ease-in, z-index 0.5s ease-out;
+  z-index: -5;
+
+  .-hover & {
+    opacity: 1;
+    z-index: 2;
+    transition: opacity 0.5s ease-in;
+  }
+}
+
+.event-item__brands-wrapper {
+  position: relative;
+  text-transform: uppercase;
+
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 70px;
+    height: 40px;
+    background: transparent;
+    left: 0;
+    z-index: 99;
+  }
+}
+
+.event-item__brands-item {
+  width: 100px;
+  height: 50px;
+}
+
+.event-item__cta-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-end;
+}
+
 .end-date {
   display: block;
   &.-hide {
@@ -22,4 +155,30 @@
 
 .create-form__img {
   display: flex;
+}
+
+.calender-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.calender-filter__brands-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  @include mq($m) {
+    max-width: 20%;
+    flex-basis: 20%;
+  }
+
+  input {
+    margin: 0;
+  }
+  label {
+    margin: 0;
+  }
 }

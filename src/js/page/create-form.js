@@ -14,16 +14,14 @@ const config = {
 firebase.initializeApp(config)
 const ref = firebase.database().ref('/events')
 
-ref.on('value', function(snapshot) {
-  console.log(snapshot.val())
-}, function (errorObject) {
+ref.on('value', function (snapshot) { console.log(snapshot.val()) }, function (errorObject) {
   console.log('The read failed: ' + errorObject.code)
 })
 
 const date = createForm.querySelector('#date')
-flatpickr(date, {dateFormat: 'Y-m-d'})
+flatpickr(date, { dateFormat: 'Y-m-d' })
 const enddate = createForm.querySelector('#endDate')
-flatpickr(enddate, {dateFormat: 'Y-m-d'})
+flatpickr(enddate, { dateFormat: 'Y-m-d' })
 
 const radioButtons = Array.from(document.querySelectorAll('.radio input'))
 const endDate = document.querySelector('.end-date')
@@ -31,7 +29,6 @@ const endDate = document.querySelector('.end-date')
 radioButtons.forEach((radio) => {
   radio.addEventListener('change', (e) => {
     console.log(radio.value)
-    console.log(endDate)
     if (radio.value === 2) {
       e.preventDefault()
       radio.classList.toggle('-hide')
@@ -49,12 +46,12 @@ let selectedFile
 var fileButton = document.getElementById('fileButton')
 let imageURL
 
-fileButton.addEventListener('change', function(e) {
+fileButton.addEventListener('change', function (e) {
   var file = e.target.files[0]
   var storageRef = firebase.storage().ref(file.name)
   const uploadTask = storageRef.put(file)
   uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-    function(snapshot) {
+    function (snapshot) {
       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
       console.log('Upload is ' + progress + '% done')
@@ -66,7 +63,7 @@ fileButton.addEventListener('change', function(e) {
           console.log('Upload is running')
           break
       }
-    }, function(error) {
+    }, function (error) {
       // A full list of error codes is available at
       // https://firebase.google.com/docs/storage/web/handle-errors
       switch (error.code) {
@@ -80,8 +77,8 @@ fileButton.addEventListener('change', function(e) {
           // Unknown error occurred, inspect error.serverResponse
           break
       }
-    }, function() {
-      uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+    }, function () {
+      uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
         console.log('File available at', downloadURL)
         imageURL = downloadURL
       })
@@ -133,6 +130,5 @@ createForm.addEventListener('submit', (e) => {
     email,
     url
   }
-  console.log(obj)
   ref.push(obj)
 })

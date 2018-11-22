@@ -17,7 +17,6 @@ const eventWrapper = document.querySelector('.js-container')
 ref.on('value', function(snapshot) {
   const entries = snapshot.val()
   Object.keys(entries).forEach((key) => {
-    console.log(entries[key])
     const {
       title,
       location,
@@ -29,7 +28,6 @@ ref.on('value', function(snapshot) {
       url} = entries[key]
 
     CreateEvents(title, location, date, enddate, imageURL, brands, email, url)
-    console.log(title, location)
   })
 }, function (errorObject) {
   console.log('The read failed: ' + errorObject.code)
@@ -58,11 +56,64 @@ function CreateEvents(title, location, date, enddate, imageURL, brands, email, u
   eventLocation.classList.add('event-item__location')
   eventLocation.innerText = location
 
+  const eventCta = document.createElement('button')
+  eventCta.classList.add('event-item__cta')
+  eventCta.innerText = 'Find out more'
+
+  eventCta.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    if (email) {
+      window.location.href = `mailto:${email}?subject=${title}`
+      eventCta.dataset.elUrl = email
+    }
+
+    if (url) {
+      window.location.href = url
+      eventCta.dataset.elUrl = url
+    }
+  })
+
+  const eventBrands = document.createElement('div')
+  eventBrands.classList.add('event-item__brands')
+
+  Object.keys(brands).forEach((key) => {
+    const eventBrandsItem = document.createElement('div')
+    eventBrandsItem.classList.add(`event-item__brands-item`, `-${brands[key]}`)
+    eventBrands.appendChild(eventBrandsItem)
+    eventContainer.classList.add(`-${brands[key]}`)
+  })
+
+  const eventCtaContainer = document.createElement('div')
+  eventCtaContainer.classList.add('event-item__cta-container')
+
+  const eventBrandWrapper = document.createElement('div')
+  eventBrandWrapper.classList.add('event-item__brands-wrapper')
+  eventBrandWrapper.innerText = 'Brands'
+
+  eventBrandWrapper.addEventListener('mouseover', (e) => {
+    eventBrandWrapper.parentNode.parentNode.classList.add('-hover')
+  }, false)
+  eventBrandWrapper.addEventListener('mouseout', (e) => {
+    eventBrandWrapper.parentNode.parentNode.classList.remove('-hover')
+  }, false)
+
+  eventCtaContainer.appendChild(eventBrandWrapper)
+  eventCtaContainer.appendChild(eventCta)
+
   eventContent.appendChild(eventTitle)
   eventContent.appendChild(eventDate)
   eventContent.appendChild(eventLocation)
+  eventContent.appendChild(eventBrands)
 
+  eventContent.appendChild(eventCtaContainer)
   eventContainer.appendChild(eventContent)
   eventContainer.appendChild(eventImg)
   eventWrapper.appendChild(eventContainer)
+
+  const eventBrandsOne = Array.from(document.querySelectorAll('.event-item__brands'))
+  eventBrandsOne.forEach((eb) => {
+    const height = eb.offsetHeight
+    eb.style.bottom = `-${height}px`
+  })
 }

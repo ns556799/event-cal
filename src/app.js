@@ -17,11 +17,15 @@ if (document.querySelector('body').classList.contains('-debug')) {
 
 // =modules
 if (document.querySelector('.js-create-form')) {
-   import(/* webpackChunkName: "moduleName" */ 'page/create-form')
+   import(/* webpackChunkName: "createForm" */ 'page/create-form')
 }
 
 if (document.querySelector('.js-events')) {
-   import(/* webpackChunkName: "moduleName" */ 'page/event-container')
+   import(/* webpackChunkName: "events" */ 'page/event-container')
+}
+
+if (document.querySelector('.js-filters')) {
+   import(/* webpackChunkName: "filters" */ 'module/filters')
 }
 
 // =blocks
