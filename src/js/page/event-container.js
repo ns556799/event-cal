@@ -1,4 +1,6 @@
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/database'
+import caleandar from 'util/caleandar'
 
 const config = {
   apiKey: 'AIzaSyBK5S7EVKSV_2ES3-muFOLrO89TnnDj8QU',
@@ -11,12 +13,14 @@ const config = {
 
 firebase.initializeApp(config)
 const ref = firebase.database().ref('/events')
-
 const eventWrapper = document.querySelector('.js-container')
+let calEvents = []
 
-ref.on('value', function(snapshot) {
+ref.once('value', function(snapshot) {
   const entries = snapshot.val()
-  Object.keys(entries).forEach((key) => {
+  const objsize = Object.objsize(entries)
+  console.log(objsize)
+  Object.keys(entries).forEach((key, i) => {
     const {
       title,
       location,
@@ -27,15 +31,24 @@ ref.on('value', function(snapshot) {
       email,
       url} = entries[key]
 
-    CreateEvents(title, location, date, enddate, imageURL, brands, email, url)
+    const calDate = {'Date': new Date(date), 'Title': title, 'Link': key}
+    calEvents.push(calDate)
+    CreateEvents(key, title, location, date, enddate, imageURL, brands, email, url)
+    console.log(i)
+    if ((objsize - 1) === i) {
+      setTimeout(() => {
+        eventWrapper.classList.add('-show')
+      }, 1000)
+    }
   })
 }, function (errorObject) {
   console.log('The read failed: ' + errorObject.code)
 })
 
-function CreateEvents(title, location, date, enddate, imageURL, brands, email, url) {
+function CreateEvents(key, title, location, date, enddate, imageURL, brands, email, url) {
   const eventContainer = document.createElement('div')
   eventContainer.classList.add('event-item')
+  eventContainer.dataset.key = key
 
   const eventContent = document.createElement('div')
   eventContent.classList.add('event-content')
@@ -80,6 +93,8 @@ function CreateEvents(title, location, date, enddate, imageURL, brands, email, u
   Object.keys(brands).forEach((key) => {
     const eventBrandsItem = document.createElement('div')
     eventBrandsItem.classList.add(`event-item__brands-item`, `-${brands[key]}`)
+    eventBrandsItem.classList.add(`brands-item`)
+    eventBrandsItem.innerText = `${brands[key]}`
     eventBrands.appendChild(eventBrandsItem)
     eventContainer.classList.add(`-${brands[key]}`)
   })
@@ -115,5 +130,42 @@ function CreateEvents(title, location, date, enddate, imageURL, brands, email, u
   eventBrandsOne.forEach((eb) => {
     const height = eb.offsetHeight
     eb.style.bottom = `-${height}px`
+  })
+}
+
+Object.objsize = function(Myobj) {
+  let osize = 0
+  let key
+  for (key in Myobj) {
+    if (Myobj.hasOwnProperty(key)) osize++
+  }
+  return osize
+}
+
+var settings = {
+  Color: '#999', //(string - color) font color of whole calendar.
+  LinkColor: '#333', //(string - color) font color of event titles.
+  NavShow: true, //(bool) show navigation arrows.
+  NavVertical: false, //(bool) show previous and coming months.
+  NavLocation: '#foo', //(string - element) where to display navigation, if not in default position.
+  DateTimeShow: true, //(bool) show current date.
+  DateTimeFormat: 'mmm, yyyy', //(string - dateformat) format previously mentioned date is shown in.
+  DatetimeLocation: '', //(string - element) where to display previously mentioned date, if not in default position.
+  EventClick: '', //(function) a function that should instantiate on the click of any event. parameters passed in via data link attribute.
+  EventTargetWholeDay: false, //(bool) clicking on the whole date will trigger event action, as opposed to just clicking on the title.
+  DisabledDays: [], //(array of numbers) days of the week to be slightly transparent. ie: [1,6] to fade Sunday and Saturday.
+}
+
+var element = document.getElementById('caleandar')
+
+setTimeout(() => {
+  caleandar(element, calEvents, settings)
+  CalLinks()
+}, 1000)
+
+function CalLinks() {
+  const calDays = Array.from(document.querySelectorAll('.cld-days cld-day'))
+  calDays.forEach((calDay) => {
+    console.log(calDay)
   })
 }

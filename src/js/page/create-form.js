@@ -1,4 +1,5 @@
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/database'
 import flatpickr from 'flatpickr'
 
 const createForm = document.querySelector('.js-create-form')

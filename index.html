@@ -46,58 +46,66 @@
                 tristique imperdiet, rhoncus ac ante.
             </p>
         </div>
-        <div class="calender-holder__cal">
+        <div class="calender-holder__cal" id="caleandar">
 
         </div>
     </div>
-    <div class="calender-filter js-filters">
-        <div class="calender-filter__brands-item">
-            <input type="checkbox" id="financial_times" name="brands" value="financial_times">
-            <label for="financial_times">Financial Times</label>
+    <div id="list-filters">
+        <div class="calender-filter js-filters">
+            <div class="calender-filter__brands-item">
+                <input class="sort" data-sort="brands-item" type="checkbox" id="financial_times" name="brands"
+                       value="financial_times">
+                <label for="financial_times">Financial Times</label>
+            </div>
+            <div class="calender-filter__brands-item">
+                <input class="sort" data-sort="brands-item" type="checkbox" id="FTfm" name="brands" value="FTfm">
+                <label for="FTfm">FTfm</label>
+            </div>
+            <div class="calender-filter__brands-item">
+                <input class="sort" data-sort="brands-item" type="checkbox" id="pensions_expert" name="brands"
+                       value="pensions_expert">
+                <label for="pensions_expert">Pensions Expert</label>
+            </div>
+            <div class="calender-filter__brands-item">
+                <input class="sort" data-sort="brands-item" type="checkbox" id="pwm" name="brands" value="pwm">
+                <label for="pwm">PWM</label>
+            </div>
+            <div class="calender-filter__brands-item">
+                <input class="sort" data-sort="brands-item" type="checkbox" id="the_banker" name="brands"
+                       value="the_banker">
+                <label for="the_banker">The Banker</label>
+            </div>
+            <div class="calender-filter__brands-item">
+                <input class="sort" data-sort="brands-item" type="checkbox" id="ftadviser" name="brands"
+                       value="ftadviser">
+                <label for="ftadviser">FTAdviser</label>
+            </div>
+            <div class="calender-filter__brands-item">
+                <input class="sort" data-sort="brands-item" type="checkbox" id="financial_adviser" name="brands"
+                       value="financial_adviser">
+                <label for="financial_adviser">Money Management</label>
+            </div>
+            <div class="calender-filter__brands-item">
+                <input class="sort" data-sort="brands-item" type="checkbox" id="money_management" name="brands"
+                       value="money_management">
+                <label for="money_management"> Financial Adviser</label>
+            </div>
+            <div class="calender-filter__brands-item">
+                <input class="sort" data-sort="brands-item" type="checkbox" id="fdi" name="brands" value="fdi">
+                <label for="fdi"> Fdi </label>
+            </div>
+            <div class="calender-filter__brands-item">
+                <input class="sort" data-sort="brands-item" type="checkbox" id="ic" name="brands" value="ic">
+                <label for="ic"> IC </label>
+            </div>
+            <div class="calender-filter__brands-item">
+                <input class="sort" data-sort="brands-item" type="checkbox" id="gis" name="brands" value="gis">
+                <label for="gis"> GIS Planning </label>
+            </div>
         </div>
-        <div class="calender-filter__brands-item">
-            <input type="checkbox" id="FTfm" name="brands" value="FTfm">
-            <label for="FTfm">FTfm</label>
-        </div>
-        <div class="calender-filter__brands-item">
-            <input type="checkbox" id="pensions_expert" name="brands" value="pensions_expert">
-            <label for="pensions_expert">Pensions Expert</label>
-        </div>
-        <div class="calender-filter__brands-item">
-            <input type="checkbox" id="pwm" name="brands" value="pwm">
-            <label for="pwm">PWM</label>
-        </div>
-        <div class="calender-filter__brands-item">
-            <input type="checkbox" id="the_banker" name="brands" value="the_banker">
-            <label for="the_banker">The Banker</label>
-        </div>
-        <div class="calender-filter__brands-item">
-            <input type="checkbox" id="ftadviser" name="brands" value="ftadviser">
-            <label for="ftadviser">FTAdviser</label>
-        </div>
-        <div class="calender-filter__brands-item">
-            <input type="checkbox" id="financial_adviser" name="brands" value="financial_adviser">
-            <label for="financial_adviser">Money Management</label>
-        </div>
-        <div class="calender-filter__brands-item">
-            <input type="checkbox" id="money_management" name="brands" value="money_management">
-            <label for="money_management"> Financial Adviser</label>
-        </div>
-        <div class="calender-filter__brands-item">
-            <input type="checkbox" id="fdi" name="brands" value="fdi">
-            <label for="fdi"> Fdi </label>
-        </div>
-        <div class="calender-filter__brands-item">
-            <input type="checkbox" id="ic" name="brands" value="ic">
-            <label for="ic"> IC </label>
-        </div>
-        <div class="calender-filter__brands-item">
-            <input type="checkbox" id="gis" name="brands" value="gis">
-            <label for="gis"> GIS Planning </label>
-        </div>
-    </div>
-    <div class="events-container js-events js-container">
+        <div class="events-container js-events js-container">
 
+        </div>
     </div>
 </div>
 <script src="./dist/main-bundle.js" type="text/javascript"></script>
