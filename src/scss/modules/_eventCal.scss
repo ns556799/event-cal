@@ -1,8 +1,6 @@
 .page-wrap {
   max-width: 960px;
   margin: 0 auto;
-  padding-left: 30px;
-  padding-right: 30px;
 }
 
 .events-container {
@@ -25,7 +23,23 @@
   }
 }
 
-.calender-holder__content{
+.calender-holder__content {
+  max-width: 100%;
+  flex-basis: 100%;
+
+  @include mq($m) {
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+
+  h1 {
+    font-family: FinancierDisplayWeb, serif;
+    font-size: 2.5em;
+    padding: 1.5em 0 0.5em;
+  }
+}
+
+.calender-holder__cal {
   max-width: 100%;
   flex-basis: 100%;
 
@@ -34,17 +48,6 @@
     flex-basis: 50%;
   }
 }
-
-.calender-holder__cal{
-  max-width: 100%;
-  flex-basis: 100%;
-
-  @include mq($m) {
-    max-width: 50%;
-    flex-basis: 50%;
-  }
-}
-
 
 .event-item {
   display: flex;
@@ -72,8 +75,8 @@
 .event-content {
   display: flex;
   flex-direction: column;
-  background: red;
-  justify-content: space-between;
+  background: #f7e9d9;
+  justify-content: flex-start;
   align-items: flex-start;
   height: 100%;
   flex: 1;
@@ -83,15 +86,25 @@
 }
 
 .event-item__title {
+  font-size: 28px;
+  font-family: Arial;
+  color: black;
+  font-weight: bold;
 }
 
 .event-item__date {
+  font-size: 24px;
+  font-family: Arial;
+  
 }
 
 .event-item__location {
 }
 
 .event-item__cta {
+  background-color: #b5aca3;
+  color: white;
+  border-radius: 0;
 }
 
 .event-item__brands {
@@ -112,8 +125,12 @@
 .event-item__brands-wrapper {
   position: relative;
   text-transform: uppercase;
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
+  font-family: Arial;
 
-  &:after {
+  &:before {
     content: '';
     position: absolute;
     display: block;
@@ -122,6 +139,22 @@
     background: transparent;
     left: 0;
     z-index: 99;
+  }
+
+  &:after {
+    content: '›';
+    position: absolute;
+    display: block;
+    width: 10px;
+    height: 10px;
+    z-index: 99;
+    right: -12px;
+    top: -5px;
+    font-size: 20px;
+  }
+
+  @include mq($l) {
+    padding-left: 40px;
   }
 }
 
@@ -135,6 +168,7 @@
   justify-content: space-between;
   width: 100%;
   align-items: flex-end;
+  margin-top: auto;
 }
 
 .end-date {
@@ -166,15 +200,19 @@
 .calender-filter {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
-
 
 .calender-filter__brands-item {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
+  input {
+    margin: 0;
+    margin-right: 5px;
+  }
 
   @include mq($m) {
     max-width: 20%;
@@ -182,9 +220,19 @@
   }
 
   input {
-    margin: 0;
   }
   label {
     margin: 0;
   }
+}
+
+.filter__container {
+  padding: 70px 0;
+}
+
+.list-filters__title {
+  text-align: center;
+  font-family: Arial;
+  font-size: 30px;
+  font-weight: bold;
 }

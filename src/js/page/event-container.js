@@ -26,14 +26,16 @@ ref.once('value', function(snapshot) {
       location,
       date,
       enddate,
+      /*
       imageURL,
+*/
       brands,
       email,
       url} = entries[key]
 
     const calDate = {'Date': new Date(date), 'Title': title, 'Link': key}
     calEvents.push(calDate)
-    CreateEvents(key, title, location, date, enddate, imageURL, brands, email, url)
+    CreateEvents(key, title, location, date, enddate, /*imageURL,*/ brands, email, url)
     console.log(i)
     if ((objsize - 1) === i) {
       setTimeout(() => {
@@ -45,7 +47,7 @@ ref.once('value', function(snapshot) {
   console.log('The read failed: ' + errorObject.code)
 })
 
-function CreateEvents(key, title, location, date, enddate, imageURL, brands, email, url) {
+function CreateEvents(key, title, location, date, enddate, /*imageURL,*/ brands, email, url) {
   const eventContainer = document.createElement('div')
   eventContainer.classList.add('event-item')
   eventContainer.dataset.key = key
@@ -59,11 +61,14 @@ function CreateEvents(key, title, location, date, enddate, imageURL, brands, ema
 
   const eventDate = document.createElement('div')
   eventDate.classList.add('event-item__date')
-  eventDate.innerText = date
+  const convertedDate = formattedDate(new Date(date))
+  eventDate.innerText = convertedDate
 
   const eventImg = document.createElement('div')
   eventImg.classList.add('event-item__img')
+  /*
   eventImg.style.backgroundImage = `url(${imageURL})`
+*/
 
   const eventLocation = document.createElement('div')
   eventLocation.classList.add('event-item__location')
@@ -123,7 +128,11 @@ function CreateEvents(key, title, location, date, enddate, imageURL, brands, ema
 
   eventContent.appendChild(eventCtaContainer)
   eventContainer.appendChild(eventContent)
+
+  /*
   eventContainer.appendChild(eventImg)
+*/
+
   eventWrapper.appendChild(eventContainer)
 
   const eventBrandsOne = Array.from(document.querySelectorAll('.event-item__brands'))
@@ -152,20 +161,92 @@ var settings = {
   DateTimeFormat: 'mmm, yyyy', //(string - dateformat) format previously mentioned date is shown in.
   DatetimeLocation: '', //(string - element) where to display previously mentioned date, if not in default position.
   EventClick: '', //(function) a function that should instantiate on the click of any event. parameters passed in via data link attribute.
-  EventTargetWholeDay: false, //(bool) clicking on the whole date will trigger event action, as opposed to just clicking on the title.
+  EventTargetWholeDay: false, //(bool) clicld-labelcking on the whole date will trigger event action, as opposed to just clicking on the title.
   DisabledDays: [], //(array of numbers) days of the week to be slightly transparent. ie: [1,6] to fade Sunday and Saturday.
 }
 
-var element = document.getElementById('caleandar')
+const element = document.getElementById('caleandar')
 
 setTimeout(() => {
   caleandar(element, calEvents, settings)
   CalLinks()
+  const calNext = document.querySelector('.cld-fwd')
+  const calBack = document.querySelector('.cld-rwd')
+  calNext.addEventListener('click', (e) => {
+    CalLinks()
+  })
+  calBack.addEventListener('click', (e) => {
+    CalLinks()
+  })
 }, 1000)
 
 function CalLinks() {
-  const calDays = Array.from(document.querySelectorAll('.cld-days cld-day'))
+  const calDays = Array.from(document.querySelectorAll('.cld-days .cld-day'))
   calDays.forEach((calDay) => {
-    console.log(calDay)
+    const title = calDay.querySelector('.cld-title')
+    if (title) {
+      title.addEventListener('click', (e) => {
+        e.preventDefault()
+        const href = title.querySelector('a').href
+        const eventCals = Array.from(document.querySelectorAll('.event-item'))
+        eventCals.forEach((eventCal) => {
+          const key = eventCal.dataset.key
+          console.log(href)
+          if (href.includes(key)) {
+            eventCal.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'})
+          }
+        })
+      })
+    }
   })
+}
+
+function formattedDate(d = new Date()) {
+  let month = String(d.getMonth() + 1)
+  let day = String(d.getDate())
+  const year = String(d.getFullYear())
+
+  switch (month) {
+    case '1':
+      month = 'January'
+      break
+    case '2':
+      month = 'February'
+      break
+    case '3':
+      month = 'March'
+      break
+    case '4':
+      month = 'April'
+      break
+    case '5':
+      month = 'May'
+      break
+    case '6':
+      month = 'June'
+      break
+    case '7':
+      month = 'July'
+      break
+    case '8':
+      month = 'August'
+      break
+    case '9':
+      month = 'September'
+      break
+    case '10':
+      month = 'October'
+      break
+    case '11':
+      month = 'November'
+      break
+    case '12':
+      month = 'December'
+      break
+  }
+
+  if (month.length < 2) month = '0' + month
+  if (day.length < 2) day = '0' + day
+
+  return `${day} ${month} ${year}`
 }
