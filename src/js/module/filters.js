@@ -40,15 +40,11 @@ let filterArr = []
 filterItems.forEach((fe) => {
   fe.addEventListener('click', (e) => {
     if (fe.checked === true) {
-      console.log('checked')
       const val = fe.value
       filterArr.push(val)
-      console.log(filterArr)
       FilterEvents(filterArr)
     } else {
-      console.log('unchecked')
       filterArr = filterArr.filter(item => item !== e.target.value)
-      console.log(filterArr)
       FilterEvents(filterArr)
     }
   })
@@ -65,17 +61,22 @@ function FilterEvents(filterArr) {
     })
   } else {
     filterArr.forEach((val, i, arr) => {
-      console.log(val, i, arr, 'arr')
-      eventItems.forEach((eitem) => {
-        if (arr.length === 0) {
+      if (val === 'all') {
+        eventItems.forEach((eitem) => {
           eitem.style.display = 'flex'
-        }
-        if (eitem.classList.contains(`-${val}`)) {
-          eitem.style.display = 'flex'
-        } else {
-          eitem.style.display = 'none'
-        }
-      })
+        })
+      } else {
+        eventItems.forEach((eitem) => {
+          if (arr.length === 0) {
+            eitem.style.display = 'flex'
+          }
+          if (eitem.classList.contains(`-${val}`)) {
+            eitem.style.display = 'flex'
+          } else {
+            eitem.style.display = 'none'
+          }
+        })
+      }
     })
   }
 }

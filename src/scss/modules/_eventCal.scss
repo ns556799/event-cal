@@ -5,7 +5,8 @@
 
 .events-container {
   max-height: 900px;
-  overflow-y: auto;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
   opacity: 0;
 
   &.-show {
@@ -83,38 +84,59 @@
   max-width: calc(100% - 320px);
   flex-basis: calc(100% - 320px);
   position: relative;
+  padding-top: 10px;
 }
 
 .event-item__title {
-  font-size: 28px;
+  font-size: 20px;
   font-family: Arial;
   color: black;
   font-weight: bold;
+
+  @include mq($l) {
+    padding-left: 20px;
+  }
 }
 
 .event-item__date {
-  font-size: 24px;
+  font-size: 18px;
   font-family: Arial;
-  
+
+  @include mq($l) {
+    padding-left: 20px;
+  }
 }
 
 .event-item__location {
+  font-size: 18px;
+  font-family: Arial;
+
+  @include mq($l) {
+    padding-left: 20px;
+  }
 }
 
 .event-item__cta {
   background-color: #b5aca3;
   color: white;
   border-radius: 0;
+  font-size: 18px;
+  transition: background-color 0.5s ease-in;
+
+  &:hover {
+    background-color: darken(#b5aca3, 20%);
+    transition: background-color 0.5s ease-in;
+  }
 }
 
 .event-item__brands {
   position: absolute;
   width: 100%;
-  background: blue;
+  background: #f7e9d9;
   opacity: 0;
   transition: opacity 0.5s ease-in, z-index 0.5s ease-out;
   z-index: -5;
-
+  box-shadow: 1px 3px 8px #888888;
   .-hover & {
     opacity: 1;
     z-index: 2;
@@ -154,13 +176,41 @@
   }
 
   @include mq($l) {
-    padding-left: 40px;
+    padding-left: 20px;
+    padding-bottom: 20px;
   }
 }
 
 .event-item__brands-item {
   width: 100px;
   height: 50px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  &.-money_management {
+  }
+
+  &.-financial_times {
+  }
+  &.-fTfm {
+  }
+  &.-pensions_expert {
+  }
+  &.-pwm {
+  }
+  &.-the_banker {
+  }
+  &.-ftadviser {
+  }
+  &.-financial_adviser {
+  }
+  &.-fdi {
+  }
+  &.-ic {
+  }
+  &.-gis {
+  }
 }
 
 .event-item__cta-container {
@@ -223,6 +273,9 @@
   }
   label {
     margin: 0;
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: 300;
   }
 }
 
@@ -235,4 +288,5 @@
   font-family: Arial;
   font-size: 30px;
   font-weight: bold;
+  margin-bottom: 30px;
 }

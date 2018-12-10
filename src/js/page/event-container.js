@@ -26,16 +26,14 @@ ref.once('value', function(snapshot) {
       location,
       date,
       enddate,
-      /*
       imageURL,
-*/
       brands,
       email,
       url} = entries[key]
 
     const calDate = {'Date': new Date(date), 'Title': title, 'Link': key}
     calEvents.push(calDate)
-    CreateEvents(key, title, location, date, enddate, /*imageURL,*/ brands, email, url)
+    CreateEvents(key, title, location, date, enddate, imageURL, brands, email, url)
     console.log(i)
     if ((objsize - 1) === i) {
       setTimeout(() => {
@@ -47,7 +45,7 @@ ref.once('value', function(snapshot) {
   console.log('The read failed: ' + errorObject.code)
 })
 
-function CreateEvents(key, title, location, date, enddate, /*imageURL,*/ brands, email, url) {
+function CreateEvents(key, title, location, date, enddate, imageURL, brands, email, url) {
   const eventContainer = document.createElement('div')
   eventContainer.classList.add('event-item')
   eventContainer.dataset.key = key
@@ -66,9 +64,7 @@ function CreateEvents(key, title, location, date, enddate, /*imageURL,*/ brands,
 
   const eventImg = document.createElement('div')
   eventImg.classList.add('event-item__img')
-  /*
   eventImg.style.backgroundImage = `url(${imageURL})`
-*/
 
   const eventLocation = document.createElement('div')
   eventLocation.classList.add('event-item__location')
@@ -87,8 +83,11 @@ function CreateEvents(key, title, location, date, enddate, /*imageURL,*/ brands,
     }
 
     if (url) {
-      window.location.href = url
+      if (!url.includes('https')) {
+        url = `https://${url}`
+      }
       eventCta.dataset.elUrl = url
+      window.open(url, '_blank')
     }
   })
 
@@ -129,9 +128,7 @@ function CreateEvents(key, title, location, date, enddate, /*imageURL,*/ brands,
   eventContent.appendChild(eventCtaContainer)
   eventContainer.appendChild(eventContent)
 
-  /*
   eventContainer.appendChild(eventImg)
-*/
 
   eventWrapper.appendChild(eventContainer)
 
