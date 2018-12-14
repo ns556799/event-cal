@@ -16,11 +16,13 @@ const ref = firebase.database().ref('/events')
 const eventWrapper = document.querySelector('.js-container')
 let calEvents = []
 
-ref.once('value', function(snapshot) {
+ref.orderByChild('date').on('value', function(snapshot) {
   const entries = snapshot.val()
   const objsize = Object.objsize(entries)
-  console.log(objsize)
-  Object.keys(entries).forEach((key, i) => {
+  console.log('helloworld')
+
+  snapshot.forEach(function(child, i) {
+    console.log(child) // NOW THE CHILDREN PRINT IN ORDER
     const {
       title,
       location,
@@ -29,17 +31,16 @@ ref.once('value', function(snapshot) {
       imageURL,
       brands,
       email,
-      url} = entries[key]
+      url} = child.val()
+
+    const key = child.key
 
     const calDate = {'Date': new Date(date), 'Title': title, 'Link': key}
     calEvents.push(calDate)
     CreateEvents(key, title, location, date, enddate, imageURL, brands, email, url)
-    console.log(i)
-    if ((objsize - 1) === i) {
-      setTimeout(() => {
-        eventWrapper.classList.add('-show')
-      }, 1000)
-    }
+    setTimeout(() => {
+      eventWrapper.classList.add('-show')
+    }, 1000)
   })
 }, function (errorObject) {
   console.log('The read failed: ' + errorObject.code)
@@ -62,6 +63,8 @@ function CreateEvents(key, title, location, date, enddate, imageURL, brands, ema
   const convertedDate = formattedDate(new Date(date))
   eventDate.innerText = convertedDate
 
+  eventContainer.dataset.date = date
+
   const eventImg = document.createElement('div')
   eventImg.classList.add('event-item__img')
   eventImg.style.backgroundImage = `url(${imageURL})`
@@ -78,13 +81,13 @@ function CreateEvents(key, title, location, date, enddate, imageURL, brands, ema
     e.preventDefault()
 
     if (email) {
-      window.location.href = `mailto:${email}?subject=${title}`
+      window.open(`mailto:${email}?subject=${title}`, '_blank')
       eventCta.dataset.elUrl = email
     }
 
     if (url) {
-      if (!url.includes('https')) {
-        url = `https://${url}`
+      if (!url.includes('http')) {
+        url = `http://${url}`
       }
       eventCta.dataset.elUrl = url
       window.open(url, '_blank')
@@ -98,7 +101,6 @@ function CreateEvents(key, title, location, date, enddate, imageURL, brands, ema
     const eventBrandsItem = document.createElement('div')
     eventBrandsItem.classList.add(`event-item__brands-item`, `-${brands[key]}`)
     eventBrandsItem.classList.add(`brands-item`)
-    eventBrandsItem.innerText = `${brands[key]}`
     eventBrands.appendChild(eventBrandsItem)
     eventContainer.classList.add(`-${brands[key]}`)
   })
@@ -134,7 +136,7 @@ function CreateEvents(key, title, location, date, enddate, imageURL, brands, ema
 
   const eventBrandsOne = Array.from(document.querySelectorAll('.event-item__brands'))
   eventBrandsOne.forEach((eb) => {
-    const height = eb.offsetHeight
+    const height = (eb.offsetHeight - 15)
     eb.style.bottom = `-${height}px`
   })
 }
@@ -164,6 +166,10 @@ var settings = {
 
 const element = document.getElementById('caleandar')
 
+eventWrapper.addEventListener('scroll', () => {
+  eventWrapper.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'})
+})
+
 setTimeout(() => {
   caleandar(element, calEvents, settings)
   CalLinks()
@@ -175,7 +181,21 @@ setTimeout(() => {
   calBack.addEventListener('click', (e) => {
     CalLinks()
   })
+  EventEnded()
 }, 1000)
+
+function EventEnded() {
+  const eventCals = Array.from(document.querySelectorAll('.event-item'))
+  eventCals.forEach((calItem) => {
+    const currentDate = new Date(calItem.dataset.date)
+    const currDate = new Date()
+
+    if (currDate > currentDate) {
+      calItem.classList.add('-fade')
+    } else {
+    }
+  })
+}
 
 function CalLinks() {
   const calDays = Array.from(document.querySelectorAll('.cld-days .cld-day'))
@@ -191,6 +211,10 @@ function CalLinks() {
           console.log(href)
           if (href.includes(key)) {
             eventCal.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'})
+            eventCal.classList.add('-blink')
+            setTimeout(() => {
+              eventCal.classList.remove('-blink')
+            }, 5000)
           }
         })
       })

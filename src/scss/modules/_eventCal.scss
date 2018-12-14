@@ -1,6 +1,10 @@
 .page-wrap {
   max-width: 960px;
   margin: 0 auto;
+  padding: 0 30px;
+  @include mq($ml) {
+    padding: initial;
+  }
 }
 
 .events-container {
@@ -19,7 +23,7 @@
   display: flex;
   flex-direction: column;
 
-  @include mq($m) {
+  @include mq($ml) {
     flex-direction: row;
   }
 }
@@ -28,7 +32,7 @@
   max-width: 100%;
   flex-basis: 100%;
 
-  @include mq($m) {
+  @include mq($ml) {
     max-width: 50%;
     flex-basis: 50%;
   }
@@ -44,7 +48,7 @@
   max-width: 100%;
   flex-basis: 100%;
 
-  @include mq($m) {
+  @include mq($ml) {
     max-width: 50%;
     flex-basis: 50%;
   }
@@ -52,25 +56,54 @@
 
 .event-item {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column-reverse;
   justify-content: flex-end;
   align-items: center;
   background-color: #f7e9d9;
   margin-bottom: 60px;
-  height: 190px;
+  border: 2px transparent solid;
+
+  @include mq($xm) {
+    height: 190px;
+    flex-direction: row-reverse;
+
+  }
+
   &.-hide {
     display: none;
+  }
+
+  &.-fade {
+    opacity: 0.3;
+  }
+
+  &.-blink {
+    animation: blinky 1s step-end infinite;
+  }
+}
+
+@keyframes blinky {
+  from, to {
+    border-color: transparent
+  }
+  50% {
+    border-color: #d56c21
   }
 }
 
 .event-item__img {
-  max-width: 320px;
-  height: 190px;
+  height: 250px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   width: 100%;
-  flex-basis: 320px;
+  max-width: 100%;
+  @include mq($xm) {
+    height: 190px;
+    flex-basis: 320px;
+    max-width: 320px;
+
+  }
 }
 
 .event-content {
@@ -81,10 +114,16 @@
   align-items: flex-start;
   height: 100%;
   flex: 1;
-  max-width: calc(100% - 320px);
-  flex-basis: calc(100% - 320px);
+  max-width: 100%;
+  flex-basis: 100%;
+  width: 100%;
   position: relative;
   padding-top: 10px;
+
+  @include mq($ml) {
+    max-width: calc(100% - 320px);
+    flex-basis: calc(100% - 320px);
+  }
 }
 
 .event-item__title {
@@ -92,28 +131,23 @@
   font-family: Arial;
   color: black;
   font-weight: bold;
+  padding-left: 20px;
 
-  @include mq($l) {
-    padding-left: 20px;
-  }
 }
 
 .event-item__date {
   font-size: 18px;
   font-family: Arial;
 
-  @include mq($l) {
-    padding-left: 20px;
-  }
+  padding-left: 20px;
+
 }
 
 .event-item__location {
   font-size: 18px;
   font-family: Arial;
 
-  @include mq($l) {
-    padding-left: 20px;
-  }
+  padding-left: 20px;
 }
 
 .event-item__cta {
@@ -137,6 +171,10 @@
   transition: opacity 0.5s ease-in, z-index 0.5s ease-out;
   z-index: -5;
   box-shadow: 1px 3px 8px #888888;
+  display: flex;
+  flex-direction: row;
+  padding: 15px 20px;
+
   .-hover & {
     opacity: 1;
     z-index: 2;
@@ -151,6 +189,12 @@
   font-weight: bold;
   color: black;
   font-family: Arial;
+  padding-bottom: 10px;
+  padding-left: 20px;
+
+  @include mq($xm) {
+    padding-bottom: 20px;
+  }
 
   &:before {
     content: '';
@@ -174,42 +218,64 @@
     top: -5px;
     font-size: 20px;
   }
-
-  @include mq($l) {
-    padding-left: 20px;
-    padding-bottom: 20px;
-  }
 }
 
 .event-item__brands-item {
   width: 100px;
   height: 50px;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background-size: contain !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
 
   &.-money_management {
+    background: URL("../dist/static/img/brands/moneymanagement.png");
   }
 
   &.-financial_times {
+    background: URL("../dist/static/img/brands/ft.png");
   }
+
   &.-fTfm {
+    background: URL("../dist/static/img/brands/fdi.png");
+
   }
+
   &.-pensions_expert {
+    background: URL("../dist/static/img/brands/pension-expert.png");
+
   }
+
   &.-pwm {
+    background: URL("../dist/static/img/brands/pwn.png");
+
   }
+
   &.-the_banker {
+    background: URL("../dist/static/img/brands/the-banker.png");
+
   }
+
   &.-ftadviser {
+    background: URL("../dist/static/img/brands/fdi.png");
+
   }
+
   &.-financial_adviser {
+    background: URL("../dist/static/img/brands/ft-advisor.png");
   }
+
   &.-fdi {
+    background: URL("../dist/static/img/brands/fdi.png");
   }
+
   &.-ic {
+    background: URL("../dist/static/img/brands/fdi.png");
+
   }
+
   &.-gis {
+    background: URL("../dist/static/img/brands/gis.png");
+
   }
 }
 
@@ -223,6 +289,7 @@
 
 .end-date {
   display: block;
+
   &.-hide {
     display: none;
   }
@@ -241,10 +308,14 @@
   label {
     margin: 0;
   }
+
+  input {
+    -webkit-appearance: initial !important;
+  }
 }
 
 .create-form__img {
-  display: flex;
+  padding: 20px 0;
 }
 
 .calender-filter {
@@ -258,19 +329,24 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding: 5px;
+  @include mq($ml) {
+    padding: initial;
+  }
 
   input {
     margin: 0;
     margin-right: 5px;
   }
 
-  @include mq($m) {
+  @include mq($ml) {
     max-width: 20%;
     flex-basis: 20%;
   }
 
   input {
   }
+
   label {
     margin: 0;
     font-family: Arial;

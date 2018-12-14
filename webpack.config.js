@@ -41,12 +41,19 @@ config.entry = {
   editor: [path.resolve(__dirname, 'src/scss/editor.scss')],
 },
 
-config.output = {
-  filename: '[name]-bundle.js',
-  chunkFilename: '[name]-[chunkhash].js',
-  path: path.resolve(__dirname, 'dist'),
-  publicPath: './dist/'
-}
+    config.output = {
+      filename: '[name]-bundle.js',
+      chunkFilename: '[name]-[chunkhash].js',
+      path: path.resolve(__dirname, 'dist'),
+      publicPath: './dist/'
+    }
+
+
+
+// ﻿
+// index.html:100 GET file:///Users/niv.suresh/Documents/Projects/brunello_cuc/dist/distsrc/static/img/hero-banner-01-a6d317b….png net::ERR_FILE_NOT_FOUND
+//   main-bundle.js?v=1.0:112 GET file:///Users/niv.suresh/Documents/Projects/brunello_cuc/distscrollingWindow-cd7925a….js net::ERR_FILE
+
 
 config.resolve = {
   alias: {
@@ -122,7 +129,7 @@ config.plugins = [
 
   // generate .version file
   new WebpackOnBuildPlugin((stats) => {
-      saveVersioningToDisk(config.output.path)
+    saveVersioningToDisk(config.output.path)
   }),
 
   // add header
@@ -138,11 +145,11 @@ config.plugins = [
 
 if (isProd) {
   config.plugins.push(
-    new webpack.optimize.CommonsChunkPlugin({
-      children: true,
-      minChunks: 2
-    }),
-    new UglifyJsPlugin(),
+      new webpack.optimize.CommonsChunkPlugin({
+        children: true,
+        minChunks: 2
+      }),
+      new UglifyJsPlugin(),
   )
 }
 

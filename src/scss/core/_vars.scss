@@ -101,6 +101,7 @@ $xs: 320px;
 $s: 400px;
 $sl: 480px;
 $sl2: 580px;
+$xm: 695px;
 $m: 768px;
 $ml: 992px;
 $l: 1100px;
@@ -118,6 +119,7 @@ $breakpoints: (
 		(s, $s),
 		(sl, $sl),
 		(sl2, $sl2),
+		(xm, $xm),
 		(m, $m),
 		(ml, $ml),
 		(l, $l),

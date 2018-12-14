@@ -28,6 +28,10 @@ if (document.querySelector('.js-filters')) {
    import(/* webpackChunkName: "filters" */ 'module/filters')
 }
 
+if (document.querySelector('.event-cal__slider')) {
+   import(/* webpackChunkName: "filters" */ 'module/slider')
+}
+
 // =blocks
 // if (document.querySelector('.m-blockname')) {
 //   import(/* webpackChunkName: "blockName" */ 'block/blockName')

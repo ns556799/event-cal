@@ -22,7 +22,7 @@
     <nav role="navigation" class="nav">
         <div class="nav-contenedor">
             <a href="#" id="btn-menu" class=""> <span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span> </a>
-            <div class="logo grid-desktop5"><img src="img/FTspecialist-logo.svg" onclick="location.href='index.html'"></div>
+            <div class="logo grid-desktop5"><img src="dist/static/img/FTlogo.svg" onclick="location.href='index.html'"></div>
             <!-- $$ MENU  -->
             <ul id="menu">
                 <li class="btns"><a href="index.html#intro">About us</a></li>
@@ -56,6 +56,9 @@
                 <input type="text" id="endDate" name="date">
             </div>
             <div class="create-form__brands">
+                <div class="create-form__brands-title">
+                   Brands
+                </div>
                 <div class="create-form__brands-item">
                     <input type="checkbox" id="financial_times" name="brands" value="financial_times">
                     <label for="financial_times">Financial Times</label>
@@ -102,9 +105,13 @@
                 </div>
 
             </div>
+
             <div id="filesubmit" class="create-form__img">
+                <label for="fileButton"> Upload Image </label>
                 <input type="file" id="fileButton" class="file-select" accept="image/*"/>
+<!--
                 <button type="button" class="file-submit">Upload</button>
+-->
             </div>
             <div>
                 <label for="email">Email:</label>
@@ -118,17 +125,6 @@
         </form>
     </div>
 </div>
-
-
-<form role="form" class="form" onsubmit="return false;">
-    <div class="form-group">
-        <label for="file">File</label>
-        <input id="file" type="file" class="form-control"/>
-    </div>
-    <button id="upload" type="button" class="btn btn-primary">Upload</button>
-</form>
-
-<div id="output" class="container"></div>
 
 <script src="./dist/main-bundle.js" type="text/javascript"></script>
 </body>

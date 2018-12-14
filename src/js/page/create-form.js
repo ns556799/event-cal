@@ -1,6 +1,9 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
+import 'firebase/storage'
 import flatpickr from 'flatpickr'
+
+let dbItems = null
 
 const createForm = document.querySelector('.js-create-form')
 const config = {
@@ -15,7 +18,19 @@ const config = {
 firebase.initializeApp(config)
 const ref = firebase.database().ref('/events')
 
-ref.on('value', function (snapshot) { console.log(snapshot.val()) }, function (errorObject) {
+ref.on('value', function (snapshot) {
+  console.log(snapshot.val())
+  dbItems = Object.keys(snapshot.val()).length
+  if (!localStorage.getItem('eventObjectLength')) {
+    localStorage.setItem('eventObjectLength', dbItems)
+  } else {
+    const setVal = parseInt(localStorage.getItem('eventObjectLength'))
+
+    if (setVal < dbItems) {
+
+    }
+  }
+}, function (errorObject) {
   console.log('The read failed: ' + errorObject.code)
 })
 
@@ -132,4 +147,7 @@ createForm.addEventListener('submit', (e) => {
     url
   }
   ref.push(obj)
+  setTimeout(() => {
+    location.reload()
+  }, 2500)
 })
